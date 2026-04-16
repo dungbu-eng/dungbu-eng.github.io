@@ -2,19 +2,95 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Dungbu-eng Portfolio</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; background: #f4f4f4; }
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; }
-        h1 { color: #2c3e50; }
-        p { color: #7f8c8d; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nền tảng ứng dụng web hiện đại và hiệu suất cao.">
+    <title>Dungbu Apps Portal</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome cho Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="card">
-        <h1>Chào mừng đến với trang của Dungbu-eng!</h1>
-        <p>Tên miền GitHub Pages đã hoạt động thành công.</p>
-        <p>Hệ thống AI và Automation đang được cập nhật...</p>
+    <!-- Background mờ ảo (Glassmorphism + Mesh Gradients) -->
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
     </div>
+    
+    <!-- Header -->
+    <header class="glass-header">
+        <div class="logo">
+            <i class="fa-solid fa-layer-group"></i> Dungbu<span>Apps</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Trang chủ</a></li>
+                <li><a href="#apps">Ứng dụng</a></li>
+                <li><a href="#">Tài liệu</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </nav>
+        <button class="btn-primary"><i class="fa-solid fa-user-circle"></i> Đăng nhập</button>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero-section">
+        <div class="hero-content">
+            <div class="pill-badge">Phiên bản Web Mới Nhất 🚀</div>
+            <h1 class="gradient-text">Không Gian Của Các<br>Ứng Dụng Web Linh Hoạt</h1>
+            <p>Trải nghiệm hệ sinh thái các công cụ tăng cường hiệu suất hoàn toàn trên trình duyệt. Tốc độ, bảo mật và thiết kế tương tác đỉnh cao.</p>
+            <div class="hero-buttons">
+                <button class="btn-glow">Bắt đầu miễn phí <i class="fa-solid fa-arrow-right"></i></button>
+                <button class="btn-secondary"><i class="fa-brands fa-github"></i> Xem mã nguồn</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Danh sách ứng dụng -->
+    <section id="apps" class="apps-grid">
+        <!-- Card 1 -->
+        <div class="app-card">
+            <div class="app-icon gradient-1"><i class="fa-solid fa-chart-pie"></i></div>
+            <h3>Khám Phá Dữ Liệu</h3>
+            <p>Trực quan hoá dữ liệu tự động. Import từ Excel, CSV và nhận các báo cáo biểu đồ động thông minh chỉ trong vài giây.</p>
+            <a href="#" class="app-link">Mở ứng dụng</a>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="app-card">
+            <div class="app-icon gradient-2"><i class="fa-solid fa-diagram-project"></i></div>
+            <h3>Quản Lý Dự Án</h3>
+            <p>Phân rã cấu trúc công việc (WBS), theo dõi tiến độ qua biểu đồ Gantt và quản lý nguồn lực mượt mà.</p>
+            <a href="#" class="app-link">Mở ứng dụng</a>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="app-card">
+            <div class="app-icon gradient-3"><i class="fa-solid fa-file-signature"></i></div>
+            <h3>Công Cụ PDF</h3>
+            <p>Chỉnh sửa, gộp, chia nhỏ, hoặc đóng dấu bản quyền các tệp PDF hoàn toàn ẩn danh trên trình duyệt.</p>
+            <a href="#" class="app-link">Mở ứng dụng</a>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="app-card">
+            <div class="app-icon gradient-4"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3>AI Trợ Lý Code</h3>
+            <p>Được tích hợp sẵn LLMs mạnh mẽ, tự động sinh code, debug và refactor cho cả Python, Go, VBA và JS.</p>
+            <a href="#" class="app-link">Mở ứng dụng</a>
+        </div>
+    </section>
+
+    <!-- Cảnh báo / Footer phụ -->
+    <footer class="footer">
+        <p>© 2026 Dungbu Engineering. Được triển khai trên <i class="fa-brands fa-github"></i> GitHub Pages.</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="script.js"></script>
 </body>
 </html>
