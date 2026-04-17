@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Cụ PDF | Dungbu Apps</title>
+    <!-- Thư viện xử lý PDF (Client-side) -->
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4"></script>
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- App CSS -->
+    <link rel="stylesheet" href="pdf-tools.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background mờ ảo đồng nhất -->
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    
+    <!-- Header thu nhỏ -->
+    <header class="glass-header app-header">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.6rem; color: inherit;">
+                <i class="fa-solid fa-layer-group"></i> Dungbu<span>Apps</span>
+            </a>
+        </div>
+        <div class="app-title">Công Cụ PDF Ân Danh</div>
+    </header>
+
+    <main class="pdf-workspace">
+        <!-- Sidebar Menu -->
+        <aside class="sidebar">
+            <div class="menu-group">
+                <h3>Công cụ</h3>
+                <ul>
+                    <li class="active" data-tool="merge">
+                        <i class="fa-solid fa-object-group"></i> Gộp PDF
+                    </li>
+                    <li data-tool="split">
+                        <i class="fa-solid fa-scissors"></i> Tách Trang
+                    </li>
+                    <li data-tool="watermark">
+                        <i class="fa-solid fa-stamp"></i> Đóng Dấu
+                    </li>
+                    <li data-tool="edit">
+                        <i class="fa-solid fa-file-pen"></i> Chỉnh Sửa
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <section class="main-content">
+            <div class="tool-header">
+                <h2 id="tool-title">Gộp nhiều PDF thành một</h2>
+                <p id="tool-desc">Kéo thả các tệp PDF vào khung bên dưới để tự động trộn thành 1 file duy nhất (Dữ liệu không bao giờ rời khỏi thiết bị của bạn).</p>
+            </div>
+
+            <!-- Khu vực tải file -->
+            <div class="drop-zone" id="drop-zone">
+                <div class="drop-zone-content">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <h3>Kéo thả tệp PDF vào đây</h3>
+                    <p>Hoặc</p>
+                    <button class="btn-glow btn-sm" onclick="document.getElementById('file-input').click()">Chọn Tệp</button>
+                    <!-- Input ẩn -->
+                    <input type="file" id="file-input" multiple accept="application/pdf" style="display: none;">
+                </div>
+            </div>
+
+            <!-- Cấu hình tính năng hiện tại (Tuỳ vào tool đang chọn) -->
+            <div class="tool-config" id="tool-config" style="display: none;">
+                <!-- Cấu hình Watermark -->
+                <div class="config-panel" id="config-watermark" style="display: none;">
+                    <h4>Cài đặt Watermark</h4>
+                    <div class="input-group">
+                        <label>Văn bản dấu mờ</label>
+                        <input type="text" id="watermark-text" value="BẢN QUYỀN">
+                    </div>
+                </div>
+
+                <!-- Cấu hình Split -->
+                <div class="config-panel" id="config-split" style="display: none;">
+                    <h4>Cài đặt Tách trang</h4>
+                    <div class="input-group">
+                        <label>Trang cần tách (VD: 1, 3, 5-7)</label>
+                        <input type="text" id="split-pages" placeholder="Mặc định tách tất cả thành từng trang nhỏ">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cảnh Báo/Thông báo trạng thái -->
+            <div class="status-box" id="status-box" style="display: none;">
+                <i class="fa-solid fa-spinner fa-spin" id="spinner"></i> <span id="status-text">Đang xử lý...</span>
+            </div>
+
+            <!-- Danh sách file đã chọn -->
+            <div class="file-preview-list" id="file-list"></div>
+
+            <!-- Bảng điều khiển Thực thi -->
+            <div class="action-panel">
+                <button class="btn-primary btn-large" id="btn-execute" disabled>
+                    <i class="fa-solid fa-bolt"></i> Bắt đầu xử lý
+                </button>
+            </div>
+            
+            <!-- Khu vực kết quả / Download -->
+            <div class="result-area" id="result-area" style="display: none;">
+                <div class="result-card">
+                    <i class="fa-solid fa-circle-check" style="color: #43e97b; font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <h3>Hoàn Tất Thành Công!</h3>
+                    <p>File của bạn đã sẵn sàng và được xử lý hoàn toàn trên trình duyệt này.</p>
+                    <div class="download-links" id="download-links">
+                        <!-- Nút download sẽ được tạo động -->
+                    </div>
+                    <button class="btn-secondary" style="margin-top: 1rem;" id="btn-reset">Làm mới</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Xem Trước/Xoay/Xoá trang cho chức năng Edit -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Quản Lý Trang PDF</h2>
+                <div class="modal-actions">
+                    <button class="btn-secondary btn-sm" id="btn-add-blank"><i class="fa-solid fa-file-circle-plus"></i> Thêm trang trắng cuối</button>
+                </div>
+            </div>
+            <div class="pages-grid" id="pages-grid">
+                <!-- Thu nhỏ các trang (Thumbnail Placeholder) -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="btn-save-edit">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="pdf-tools.js"></script>
+</body>
+</html>
