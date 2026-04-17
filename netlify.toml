@@ -1,0 +1,16 @@
+# Netlify configuration for Dungbu Apps
+# Enables COOP+COEP headers required for WebAssembly-based iframes (e.g., MxCAD)
+
+[[headers]]
+  # Apply to ALL pages so SharedArrayBuffer works globally
+  for = "/*"
+  [headers.values]
+    Cross-Origin-Opener-Policy    = "same-origin"
+    Cross-Origin-Embedder-Policy  = "require-corp"
+    Cross-Origin-Resource-Policy  = "cross-origin"
+
+# Optional: redirect www to non-www (uncomment if needed)
+# [[redirects]]
+#   from = "https://www.dungbu-eng.netlify.app/*"
+#   to   = "https://dungbu-eng.netlify.app/:splat"
+#   status = 301

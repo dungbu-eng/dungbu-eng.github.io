@@ -333,6 +333,7 @@ nav a:hover::after {
 .gradient-2 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
 .gradient-3 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
 .gradient-4 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.gradient-5 { background: linear-gradient(135deg, #090979, #00d4ff); }
 
 .app-card h3 {
     font-size: 1.6rem;
